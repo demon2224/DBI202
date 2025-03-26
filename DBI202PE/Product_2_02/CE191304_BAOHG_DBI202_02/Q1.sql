@@ -1,0 +1,43 @@
+CREATE TABLE Venue(
+V_Id INT PRIMARY KEY,
+V_Name NVARCHAR(100),
+V_Address NVARCHAR(200),
+V_Contact NVARCHAR(200),
+V_Owner NVARCHAR(50)
+)
+
+CREATE TABLE Event(
+E_Id INT PRIMARY KEY,
+E_Title NVARCHAR(100),
+E_DateTime DATETIME,
+E_Type VARCHAR(50),
+V_Id INT FOREIGN KEY REFERENCES Venue(V_Id)
+)
+
+CREATE TABLE Organizer(
+Org_Id INT PRIMARY KEY,
+Org_Name NVARCHAR(100),
+Org_Address NVARCHAR(200),
+Org_Mail VARCHAR(50),
+Org_Role VARCHAR(50)
+)
+
+CREATE TABLE Attendee (
+Att_Id INT  PRIMARY KEY,
+Att_Name NVARCHAR(50),
+Att_Contact NVARCHAR(200),
+Att_Status INT,
+Att_Preferences NVARCHAR(100)
+)
+
+CREATE TABLE Organizes(
+E_Id INT REFERENCES Event(E_Id),
+Org_Id INT REFERENCES Organizer(Org_Id),
+PRIMARY KEY (E_Id, Org_Id)
+)
+
+CREATE TABLE Attends(
+E_Id INT REFERENCES Event(E_Id),
+Att_Id INT REFERENCES Attendee(Att_Id),
+PRIMARY KEY (E_Id,Att_Id)
+)

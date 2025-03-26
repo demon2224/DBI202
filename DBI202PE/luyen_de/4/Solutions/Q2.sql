@@ -1,0 +1,5 @@
+SELECT *
+FROM 
+    Patients
+WHERE 
+    YEAR(DateOfBirth) BETWEEN 1981 AND 1983

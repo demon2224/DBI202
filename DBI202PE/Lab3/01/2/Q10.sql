@@ -1,0 +1,2 @@
+DELETE FROM Customer
+WHERE Id NOT IN (SELECT DISTINCT CustomerId FROM [Order]);
